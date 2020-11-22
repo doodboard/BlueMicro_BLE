@@ -7,8 +7,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # sketch where the path of the ino file to compile
-        sketch: ['firmware']
         # keyboard folder name to compile path keyboards\<keyboard>
         # it's not recommended to build multiple keyboards at the same time since they will need the same hardware and keymap definitions.
         keyboard: ['crkbd']
