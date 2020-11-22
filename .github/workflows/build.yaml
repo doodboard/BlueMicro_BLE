@@ -63,8 +63,8 @@ jobs:
         run: |
           cp -f firmware/keyboards/${{ matrix.keyboard }}/config/${{ matrix.config }}/keyboard_config.h  firmware/keyboard_config.h
           cp -f firmware/keyboards/${{ matrix.keyboard }}/hardware/${{ matrix.fqbn }}/${{ matrix.hardware }}/hardware_config.h firmware/hardware_config.h
-          cp -f firmware/keyboards/${{ matrix.keyboard }}/keymaps/${{ matrix.keymap }}//keymap.h firmware//keymap.h
-          cp -f firmware/keyboards/${{ matrix.keyboard }}/keymaps/${{ matrix.keymap }}//keymap.cpp firmware//keymap.cpp
+          cp -f firmware/keyboards/${{ matrix.keyboard }}/keymaps/${{ matrix.keymap }}/keymap.h firmware/keymap.h
+          cp -f firmware/keyboards/${{ matrix.keyboard }}/keymaps/${{ matrix.keymap }}/keymap.cpp firmware/keymap.cpp
 
       - name: Compile Sketch
         env:
