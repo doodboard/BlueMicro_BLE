@@ -15,7 +15,7 @@ jobs:
         fqbn: ['feather52832', 'pca10056', 'feather52840']
 
     runs-on: self-hosted
-
+    if: (github.repository_owner == 'jpconstantineau')
     steps:
         - name: Fix Permissions
           run: echo ${{secrets.DEPLOY_PASSWORD}} | sudo -S chown -R $USER:$USER /home/pierre/actions-runner/_work/BlueMicro_BLE

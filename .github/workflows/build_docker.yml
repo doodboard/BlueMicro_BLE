@@ -17,6 +17,7 @@ jobs:
       matrix:
         fqbn: ['feather52832', 'pca10056', 'feather52840']
     runs-on: self-hosted
+    if: (github.repository_owner == 'jpconstantineau')
     container: jpconstantineau/arduino-cli-bluefruit-nrf52
     steps:
     - uses: actions/checkout@v2

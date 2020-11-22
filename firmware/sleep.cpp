@@ -19,6 +19,8 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
 */
 #include "sleep.h"
 #include "LedRGB.h"
+#include <Adafruit_LittleFS.h>
+#include <InternalFileSystem.h>
 
 
 extern led_handler statusLEDs; /// Typically a Blue and Red LED
@@ -62,6 +64,7 @@ void gotoSleep(unsigned long timesincelastkeypress,bool connected)
     suspendRGB();
     #endif
     setupWakeUp();
+    //Adafruit_LittleFS::end(); // unmounts the file system before going to sleep. Do we need to yield? Do we need this at all?
     sd_power_system_off();
   } 
 
@@ -73,6 +76,7 @@ void gotoSleep(unsigned long timesincelastkeypress,bool connected)
     suspendRGB();
     #endif
     setupWakeUp();
+    //Adafruit_LittleFS::end(); // unmounts the file system before going to sleep.  Do we need to yield? Do we need this at all?
     sd_power_system_off();
   } 
 }
