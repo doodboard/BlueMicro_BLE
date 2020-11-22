@@ -13,7 +13,7 @@ jobs:
         # fqbn from the community_nrf52 BSP.
         # current options:
         # 'pca10056', 'pca10059', 'feather52832'
-        fqbn: ['pca10056']
+        fqbn: ['pca10056', 'feather52832']
 
     runs-on: ubuntu-latest
     
