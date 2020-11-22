@@ -10,10 +10,19 @@ jobs:
       matrix:
         # sketch where the path of the ino file to compile
         sketch: ['firmware']
+        # keyboard folder name to compile path keyboards\<keyboard>
+        keyboard: ['4x4Backpack']
+        # config folder name to compile in path keyboards\<keyboard>\config\<config>
+        config: ['single']
         # fqbn from the community_nrf52 BSP.
         # current options:
         # 'pca10056', 'pca10059', 'feather52832'
-        fqbn: ['pca10056', 'feather52832']
+        # fqbn folder name to compile in path keyboards\<keyboard>\hardware\<fqbn>\<config>
+        fqbn: ['pca10056']
+        # hardware folder name to compile in path keyboards\<keyboard>\hardware\<fqbn>\<config>
+        hardware: ['4x4Backpack840']
+        # keymap folder name to compile in path keyboards\<keyboard>\keymaps\<keymap>
+        keymap: ['numpad']
 
     runs-on: ubuntu-latest
     
@@ -50,18 +59,25 @@ jobs:
           arduino-cli lib install   "Adafruit GFX Library"  "Adafruit NeoPixel"  "Adafruit SSD1306" 
           arduino-cli lib list
 
+      - name: Copy keyboard config files to firmware folder
+        run: |
+          cp -f firmware/keyboards/${{ matrix.keyboard }}/config/${{ matrix.config }}/keyboard_config.h  firmware/keyboard_config.h
+          cp -f firmware/keyboards/${{ matrix.keyboard }}/hardware/${{ matrix.fqbn }}/${{ matrix.hardware }}/hardware_config.h firmware/hardware_config.h
+          cp -f firmware/keyboards/${{ matrix.keyboard }}/keymaps/${{ matrix.keymap }}//keymap.h firmware//keymap.h
+          cp -f firmware/keyboards/${{ matrix.keyboard }}/keymaps/${{ matrix.keymap }}//keymap.cpp firmware//keymap.cpp
+
       - name: Compile Sketch
         env:
           BSP_PATH: .arduino15/packages/adafruit/hardware/nrf52
         run: |
-          arduino-cli compile --fqbn community_nrf52:nrf52:${{ matrix.fqbn }}  ./${{ matrix.sketch }} 
+          arduino-cli compile --fqbn community_nrf52:nrf52:${{ matrix.fqbn }}  ./firmware
           BSP_VERSION=`eval ls $HOME/$BSP_PATH`
-          BUILDLOC=`eval ls ./${{ matrix.sketch }}/build`
-          python $HOME/$BSP_PATH/$BSP_VERSION/tools/uf2conv/uf2conv.py ./${{ matrix.sketch }}/build/$BUILDLOC/${{ matrix.sketch }}.ino.hex -c -f 0xADA52840 -o ./${{ matrix.sketch }}/build/$BUILDLOC/${{ matrix.sketch }}.ino.uf2
-          ls -lR ./${{ matrix.sketch }}/build/$BUILDLOC/
+          BUILDLOC=`eval ls ./firmware/build`
+          python $HOME/$BSP_PATH/$BSP_VERSION/tools/uf2conv/uf2conv.py ./firmware/build/$BUILDLOC/firmware.ino.hex -c -f 0xADA52840 -o ./firmware/build/$BUILDLOC/firmware.ino.uf2
+          ls -lR ./firmware/build/$BUILDLOC/
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.sketch }}-${{ matrix.fqbn }}
+          name: ${{ matrix.keyboard }}-${{ matrix.hardware }}-${{ matrix.config }}-${{ matrix.keymap }}
           path: |
-            ${{ matrix.sketch }}/build
+            firmware/build
