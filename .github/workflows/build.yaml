@@ -1,14 +1,18 @@
 
-name: Test examples
+name: Build Firmware Artifacts
 
-on: [pull_request, push]
+on: [push]
 
 jobs:
   build:
     strategy:
       fail-fast: false
       matrix:
+        # sketch where the path of the ino file to compile
         sketch: ['firmware']
+        # fqbn from the community_nrf52 BSP.
+        # current options:
+        # 'pca10056', 'pca10059', 'feather52832'
         fqbn: ['pca10056']
 
     runs-on: ubuntu-latest
@@ -58,6 +62,6 @@ jobs:
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: firmware
+          name: ${{ matrix.sketch }}-${{ matrix.fqbn }}
           path: |
             ${{ matrix.sketch }}/build
