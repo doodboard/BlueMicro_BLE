@@ -1,4 +1,3 @@
-
 name: Build Firmware Artifacts
 
 on: [push]
@@ -11,18 +10,23 @@ jobs:
         # sketch where the path of the ino file to compile
         sketch: ['firmware']
         # keyboard folder name to compile path keyboards\<keyboard>
-        keyboard: ['4x4Backpack']
+        # it's not recommended to build multiple keyboards at the same time since they will need the same hardware and keymap definitions.
+        keyboard: ['crkbd']
         # config folder name to compile in path keyboards\<keyboard>\config\<config>
-        config: ['single']
+        # you can compile multiple configurations for a single keyboard
+        config: ['single','left','right']
         # fqbn from the community_nrf52 BSP.
         # current options:
         # 'pca10056', 'pca10059', 'feather52832'
+        # note that you won't be able to upload the firmware to a nrf52832 board using uf2. 
+        # uf2 files can only be uploaded to the nrf52840 boards.
         # fqbn folder name to compile in path keyboards\<keyboard>\hardware\<fqbn>\<config>
         fqbn: ['pca10056']
         # hardware folder name to compile in path keyboards\<keyboard>\hardware\<fqbn>\<config>
-        hardware: ['4x4Backpack840']
+        hardware: ['bluemicro840']
         # keymap folder name to compile in path keyboards\<keyboard>\keymaps\<keymap>
-        keymap: ['numpad']
+        # you can compile multiple keymaps for a single keyboard
+        keymap: ['default']
 
     runs-on: ubuntu-latest
     
