@@ -41,7 +41,8 @@ BlueMicro is currently missing some features found in other popular firmware. Th
 | Serial Debug CLI                                                                                                       |      ✅   |     |    |
 | Web Bluetooth Configuration                                                                                            |      💡    |     |    |
 | Hardware Troubleshooting tools                                                                                         |      ✅   |     |    |
-| User Configuration Repositories                                                                                        |            |     | ✅  |
+| Toolless builds for nRF52840 boards using github actions                                                               |     ✅    |     |  ✅ |
+| User Configuration Repositories                                                                                        |     💡     |     | ✅  |
 | Realtime Keymap Updating                                                                                               |            | ✅  |  💡  |
 
 
