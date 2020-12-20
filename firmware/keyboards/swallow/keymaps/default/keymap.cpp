@@ -23,13 +23,13 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
 std::array<std::array<Key, MATRIX_COLS>, MATRIX_ROWS> matrix =
     {KEYMAP(
         KC_TAB, KC_W, KC_R, KC_U, KC_O, KC_BSPC,
-    KC_LCTL, KC_S, KC_F, KC_J, KC_L, KC_QUOT,
-    KC_LSFT, KC_X, KC_V, KC_M, KC_DOT, KC_HAEN,
-    KC_BSPC, KC_LGUI, LAYER_1, LAYER_2, KC_RBRC, KC_DEL,
-    KC_ENT, KC_LALT, KC_SPC, KC_SPC, KC_LBRC, KC_ENT,
-    KC_Z, KC_C, KC_B, KC_N, KC_COMM, KC_SLSH,
-    KC_A, KC_D, KC_G, KC_H, KC_K, KC_SCLN,
-    KC_Q, KC_E, KC_T, KC_Y, KC_I, KC_P)};
+		KC_LCTL, KC_S, KC_F, KC_J, KC_L, KC_QUOT,
+		KC_LSFT, KC_X, KC_V, KC_M, KC_DOT, KC_HAEN,
+		KC_BSPC, KC_LGUI, MO(1), MO(2), KC_RBRC, KC_DEL,
+		KC_ENT, KC_LALT, KC_SPC, KC_SPC, KC_LBRC, KC_ENT,
+		KC_Z, KC_C, KC_B, KC_N, KC_COMM, KC_SLSH,
+		KC_A, KC_D, KC_G, KC_H, KC_K, KC_SCLN,
+		KC_Q, KC_E, KC_T, KC_Y, KC_I, KC_P)};
 
  
 void setupKeymap() {
@@ -38,24 +38,24 @@ void setupKeymap() {
     uint32_t layer1[MATRIX_ROWS][MATRIX_COLS] =
         KEYMAP(
     KC_ESC, KC_8, KC_LEFT, KC_U, KC_O, KC_EQL,
-    KC_LCTL, KC_5, KC_DOWN, KC_J, KC_L, KC_QUOT,
-    KC_LSFT, KC_2, KC_V, KC_M, KC_DOT, KC_LSFT,
-    KC_0, KC_DOT, KC_NO, KC_NO, KC_LBRC, KC_RBRC,
-    KC_ENT, KC_LALT, KC_SPC, KC_SPC, KC_SPC, KC_ENT,
-    KC_1, KC_3, KC_B, KC_N, KC_COMM, KC_SLSH,
-    KC_4, KC_6, KC_UP, KC_H, KC_K, KC_SCLN,
-    KC_7, KC_9, KC_RIGHT, KC_Y, KC_I, KC_MINS);
+		KC_LCTL, KC_5, KC_DOWN, KC_J, KC_L, KC_QUOT,
+		KC_LSFT, KC_2, KC_V, KC_M, KC_DOT, KC_LSFT,
+		KC_0, KC_DOT, KC_NO, KC_NO, KC_LBRC, KC_RBRC,
+		KC_ENT, KC_LALT, KC_SPC, KC_SPC, KC_SPC, KC_ENT,
+		KC_1, KC_3, KC_B, KC_N, KC_COMM, KC_SLSH,
+		KC_4, KC_6, KC_UP, KC_H, KC_K, KC_SCLN,
+		KC_7, KC_9, KC_RIGHT, KC_Y, KC_I, KC_MINS);
 
     uint32_t layer2[MATRIX_ROWS][MATRIX_COLS] =
         KEYMAP(
     KC_GRV, KC_W, KC_R, KC_U, KC_O, RESET,
-    KC_LCTL, KC_S, KC_F, KC_J, KC_L, KC_QUOT,
-    KC_LSFT, KC_X, KC_V, KC_M, KC_DOT, KC_LSFT,
-    KC_BSPC, KC_LGUI, KC_NO, KC_NO, KC_LBRC, KC_RBRC,
-    KC_ENT, KC_LALT, KC_SPC, KC_SPC, KC_SPC, KC_ENT,
-    KC_Z, KC_C, KC_B, KC_N, KC_COMM, KC_SLSH,
-    KC_A, KC_D, KC_G, KC_H, KC_K, KC_SCLN,
-    KC_Q, KC_E, KC_T, KC_Y, KC_I, KC_P);
+		KC_LCTL, KC_S, KC_F, KC_J, KC_L, KC_QUOT,
+		KC_LSFT, KC_X, KC_V, KC_M, KC_DOT, KC_LSFT,
+		KC_BSPC, KC_LGUI, KC_NO, KC_NO, KC_LBRC, KC_RBRC,
+		KC_ENT, KC_LALT, KC_SPC, KC_SPC, KC_SPC, KC_ENT,
+		KC_Z, KC_C, KC_B, KC_N, KC_COMM, KC_SLSH,
+		KC_A, KC_D, KC_G, KC_H, KC_K, KC_SCLN,
+		KC_Q, KC_E, KC_T, KC_Y, KC_I, KC_P);
 
 
     
@@ -66,8 +66,9 @@ void setupKeymap() {
     {
         for (int col = 0; col < MATRIX_COLS; ++col)
         {
-            matrix[row][col].addActivation(_L1, Method::PRESS, layer1[row][col]);
-            matrix[row][col].addActivation(_L2, Method::PRESS, layer2[row][col]);
+
+            ADDLAYER(_L1, Method::PRESS, layer1[row][col]);
+            ADDLAYER(_L2, Method::PRESS, layer2[row][col]);
             
         }
     }

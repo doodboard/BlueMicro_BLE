@@ -1,5 +1,5 @@
 /*
-Copyright 2019-2020 <Pierre Constantineau>
+Copyright 2019 <Pierre Constantineau>
 
 3-Clause BSD License
 
@@ -17,18 +17,39 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
+#ifndef KEYBOARD_CONFIG_H
+#define KEYBOARD_CONFIG_H
+#include "hardware_config.h"
 
-#ifndef HARDWAREVARIANTS_H
-#define HARDWAREVARIANTS_H
+#define KEYBOARD_SIDE SINGLE
+//#define KEYBOARD_SIDE RIGHT
+// CHANGE THIS FOR THE KEYBOARD TO MATCH WHAT IS BEING FLASHED. OPTIONS: LEFT  RIGHT  SINGLE
 
-#define COL2ROW       0
+#define DEVICE_NAME_M                         "swallow"                          /**< Name of device. Will be included in the advertising data. */
 
-#define _QWERTY 0
-#define _L1  1
-#define _L2  2
+#define DEVICE_MODEL                        "swallow_V1"                          /**< Name of device. Will be included in the advertising data. */
 
-// putting this here since it's called in every keyboard_config and we need this for all the keymaps.
-#define KEYMAP2ARRAY(OTHERMACROHERE) {OTHERMACROHERE}
-#define ADDLAYER(LAYER_INPUT,METHOD_INPUT,KEYMAP_INPUT )  for (int row = 0; row < MATRIX_ROWS; ++row) { for (int col = 0; col < MATRIX_COLS; ++col){ matrix[row][col].addActivation(LAYER_INPUT, METHOD_INPUT, KEYMAP_INPUT[row][col]);}}
+#define MANUFACTURER_NAME                   "doodboard"                      /**< Manufacturer. Will be passed to Device Information Service. */
 
-#endif  /*HARDWAREVARIANTS_H*/
+#define KEYMAP( \
+	K00, K01, K02, K03, K04, K05, \
+	K10, K11, K12, K13, K14, K15, \
+	K20, K21, K22, K23, K24, K25, \
+	K30, K31, K32, K33, K34, K35, \
+	K40, K41, K42, K43, K44, K45, \
+	K50, K51, K52, K53, K54, K55, \
+	K60, K61, K62, K63, K64, K65, \
+	K70, K71, K72, K73, K74, K75  \
+) { \
+	{ K00,   K01,   K02,   K03,   K04,   K05 }, \
+	{ K10,   K11,   K12,   K13,   K14,   K15 }, \
+	{ K20,   K21,   K22,   K23,   K24,   K25 }, \
+	{ K30,   K31,   K32,   K33,   K34,   K35 }, \
+	{ K40,   K41,   K42,   K43,   K44,   K45 }, \
+	{ K50,   K51,   K52,   K53,   K54,   K55 }, \
+	{ K60,   K61,   K62,   K63,   K64,   K65 }, \
+	{ K70,   K71,   K72,   K73,   K74,   K75 }  \
+}
+
+
+#endif /* KEYBOARD_CONFIG_H */
