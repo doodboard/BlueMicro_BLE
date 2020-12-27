@@ -38,7 +38,7 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
         #define VBAT_PIN  4
         #define VCC_PIN 13
         #define VCC_POLARITY_ON 0
-   /*     #define D3      6  
+/*      #define D3      6  
         #define D2      8   
         #define D1      17  
         #define D0      20  

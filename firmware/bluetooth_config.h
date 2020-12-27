@@ -30,28 +30,9 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
 #define UUID128_COUNT 4
 
 // Set max power. Accepted values are: -40, -30, -20, -16, -12, -8, -4, 0, 4
-#define DEVICE_POWER                        4                                          // Use 0.  This uses less power and allows for a longer battery life.
+#define DEVICE_POWER                        0                                          // Use 0.  This uses less power and allows for a longer battery life.
 
 #define FILTER_RSSI_BELOW_STRENGTH -90
-
-
-
-
-
-
-/*
-  Power     mA    dbm  
-  -40   
-  -30
-  -20
-  -16
-  -12
-  -8
-  -4    
-  0     
-  4     
-  8  only available for nrf52840
-*/
 
 // These can be modified.  Not sure of what values are allowed.
 #define PNP_ID_VENDOR_ID_SOURCE             0x02                                       /**< Vendor ID Source. */

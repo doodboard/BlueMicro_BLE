@@ -17,9 +17,6 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
 */
 #include "keymap.h"
  
-
-
-
 std::array<std::array<Key, MATRIX_COLS>, MATRIX_ROWS> matrix =
     {KEYMAP(
         KC_TAB, KC_W, KC_R, KC_U, KC_O, KC_BSPC,
@@ -31,9 +28,7 @@ std::array<std::array<Key, MATRIX_COLS>, MATRIX_ROWS> matrix =
     KC_A, KC_D, KC_G, KC_H, KC_K, KC_SCLN,
     KC_Q, KC_E, KC_T, KC_Y, KC_I, KC_P)};
 
- 
 void setupKeymap() {
-
 
     uint32_t layer1[MATRIX_ROWS][MATRIX_COLS] =
         KEYMAP(
@@ -48,8 +43,8 @@ void setupKeymap() {
 
     uint32_t layer2[MATRIX_ROWS][MATRIX_COLS] =
         KEYMAP(
-    KC_GRV, KC_W, KC_R, KC_U, KC_O, RESET,
-    KC_LCTL, KC_S, KC_F, KC_J, KC_L, KC_QUOT,
+    KC_GRV, KC_W, KC_R, KC_U, KC_O, UF2_DFU,
+    KC_LCTL, KC_S, KC_F, KC_J, KC_L, PRINT_BATTERY,
     KC_LSFT, KC_X, KC_V, KC_M, KC_DOT, KC_LSFT,
     KC_BSPC, KC_LGUI, KC_NO, KC_NO, KC_LBRC, KC_RBRC,
     KC_ENT, KC_LALT, KC_SPC, KC_SPC, KC_SPC, KC_ENT,
@@ -57,8 +52,6 @@ void setupKeymap() {
     KC_A, KC_D, KC_G, KC_H, KC_K, KC_SCLN,
     KC_Q, KC_E, KC_T, KC_Y, KC_I, KC_P);
 
-
-    
     /*
      * add the other layers
      */
@@ -68,7 +61,6 @@ void setupKeymap() {
         {
             matrix[row][col].addActivation(_L1, Method::PRESS, layer1[row][col]);
             matrix[row][col].addActivation(_L2, Method::PRESS, layer2[row][col]);
-            
         }
     }
 
